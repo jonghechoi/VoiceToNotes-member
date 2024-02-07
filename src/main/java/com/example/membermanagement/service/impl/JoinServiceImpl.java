@@ -1,10 +1,13 @@
 package com.example.membermanagement.service.impl;
 
-import com.example.membermanagement.domain.User;
-import com.example.membermanagement.domain.dto.UserRequestDto;
-import com.example.membermanagement.repository.UserRepository;
+import com.example.membermanagement.domain.Member;
+import com.example.membermanagement.domain.dto.MemberRequestDto;
+import com.example.membermanagement.exception.JoinException;
+import com.example.membermanagement.exception.enumeration.ErrorCode;
+import com.example.membermanagement.repository.MemberRepository;
 import com.example.membermanagement.service.JoinService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -12,10 +15,24 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class JoinServiceImpl implements JoinService {
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public boolean joinUser(UserRequestDto userRequestDto) {
-        return Optional.of(userRepository.save(User.createUser(userRequestDto))).isPresent();
+    public boolean joinMember(MemberRequestDto memberRequestDto) {
+        memberRepository.findMemberByUid(memberRequestDto.getUid())
+                .ifPresent(
+                        user -> {
+                            throw new JoinException(ErrorCode.DUPLICATED_USER_NAME);
+                        }
+                );
+
+        String bCryptPassword = bCryptPasswordEncoder.encode(memberRequestDto.getPassword());
+        memberRequestDto.setPassword(bCryptPassword);
+        Member member = MemberRequestDto.toEntity(memberRequestDto);
+
+        Member saveCheck = memberRepository.save(member);
+
+        return Optional.of(saveCheck).isPresent();
     }
 }

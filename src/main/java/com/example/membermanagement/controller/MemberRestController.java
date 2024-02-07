@@ -1,6 +1,6 @@
 package com.example.membermanagement.controller;
 
-import com.example.membermanagement.domain.dto.UserRequestDto;
+import com.example.membermanagement.domain.dto.MemberRequestDto;
 import com.example.membermanagement.exception.JoinException;
 import com.example.membermanagement.exception.enumeration.ErrorCode;
 import com.example.membermanagement.service.impl.JoinServiceImpl;
@@ -14,16 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @RequiredArgsConstructor
-public class UserRestController {
+public class MemberRestController {
     private final JoinServiceImpl joinService;
 
     @PostMapping("/join")
-    public ResponseEntity<String> join(@Valid @RequestBody UserRequestDto userRequestDto) {
-        if(joinService.joinUser(userRequestDto))
+    public ResponseEntity<String> join(@Valid @RequestBody MemberRequestDto memberRequestDto) {
+        if(joinService.joinMember(memberRequestDto)) {
             return new ResponseEntity<>(HttpStatus.OK);
-        else
+        }
+        else {
             throw new JoinException(ErrorCode.INVALID_INPUT_VALUE);
+        }
     }
 }

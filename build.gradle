@@ -41,6 +41,10 @@ dependencies {
 
     /* Validator */
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.1'
+
+    /* Spring Security */
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 dependencyManagement {

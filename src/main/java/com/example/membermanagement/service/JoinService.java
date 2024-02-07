@@ -1,7 +1,7 @@
 package com.example.membermanagement.service;
 
-import com.example.membermanagement.domain.dto.UserRequestDto;
+import com.example.membermanagement.domain.dto.MemberRequestDto;
 
 public interface JoinService {
-    boolean joinUser(UserRequestDto userRequestDto);
+    boolean joinMember(MemberRequestDto memberRequestDto);
 }
