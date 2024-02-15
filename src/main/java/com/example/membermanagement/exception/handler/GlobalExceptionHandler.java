@@ -20,14 +20,14 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(JoinException.class)
-    protected ResponseEntity<ErrorResponseDto> handleJoinException(JoinException e) {
+    protected ResponseEntity<?> handleJoinException(JoinException e) {
         ErrorCode errorCode = e.getErrorCode();
         ErrorResponseDto responseDto = new ErrorResponseDto(errorCode.getStatus(), errorCode.getCode(), errorCode.getMessage());
         return new ResponseEntity<>(responseDto, HttpStatus.valueOf(responseDto.getCode()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<MethodArgumentNotValidResponseDto>> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
+    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         return new ResponseEntity<>(extractErrorMessages(e), HttpStatus.BAD_REQUEST);
     }
 

@@ -45,6 +45,12 @@ dependencies {
     /* Spring Security */
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
+
+    /* Kafka */
+    implementation 'org.apache.kafka:kafka-clients:3.6.1'
+
+    /* Configuration Processor */
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:3.2.0'
 }
 
 dependencyManagement {
