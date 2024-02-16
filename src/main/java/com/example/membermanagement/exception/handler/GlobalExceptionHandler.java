@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     protected ResponseEntity<?> handleJoinException(JoinException e) {
         ErrorCode errorCode = e.getErrorCode();
         ErrorResponseDto responseDto = new ErrorResponseDto(errorCode.getStatus(), errorCode.getCode(), errorCode.getMessage());
-        return new ResponseEntity<>(responseDto, HttpStatus.valueOf(responseDto.getCode()));
+        return new ResponseEntity<>(responseDto, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

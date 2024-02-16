@@ -7,7 +7,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
-import reactor.util.annotation.Nullable;
 
 @Getter
 @Setter
@@ -27,7 +26,6 @@ public class MemberRequestDto {
 
     @Pattern(regexp = "\\d{8}", message = "[Request] Invalid Birth Format")
     @NotNull(message = "[Request] 생년월일의 형식이 올바르지 않습니다.")
-
     private String birth;
 
     private Integer gender;
