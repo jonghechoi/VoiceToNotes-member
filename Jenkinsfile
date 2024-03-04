@@ -13,6 +13,8 @@ pipeline {
         GIT_CHECKOUT_URL = 'https://github.com/jonghechoi/member-maganement.git'
         GIT_CHECKOUT_BRANCH = 'master'
         GIT_CREDENTIALS_ID = 'ListCheckr-Member-App-AccessToken'
+
+        DOCKER_HUB_CREDENTIALS_ID = 'dockerhub-id'
     }
 
     stages {
@@ -56,9 +58,9 @@ pipeline {
 
                     echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
 
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-id') {
+                    docker.withRegistry('https://registry.hub.docker.com', '${DOCKER_HUB_CREDENTIALS_ID}') {
                         image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
-                        image.push("${RELEASE_NOTES}")
+                        image.push("${NEW_LATEST_TAG}")
                     }
                 }
             }
