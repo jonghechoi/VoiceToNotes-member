@@ -22,7 +22,7 @@ pipeline {
                     echo '\n\n\n Git Repo Checkout Succeed. \n\n\n'
                 }
                 failure {
-                    error '\n\n\n Git Repo Checkout Failed. \n\n\n'
+                    echo '\n\n\n Git Repo Checkout Failed. \n\n\n'
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Jenkins Test12'
+                echo 'Jenkins Test13'
                 echo '$(APP_NAME)'
                 echo '$(JAR_PATH)'
             }
