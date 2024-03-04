@@ -45,7 +45,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Jenkins Test11'
+                echo 'Jenkins Test12'
                 echo '$(APP_NAME)'
                 echo '$(JAR_PATH)'
             }
