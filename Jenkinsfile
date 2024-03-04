@@ -53,14 +53,11 @@ pipeline {
                 script {
                     def API_URL = "https://hub.docker.com/v2/repositories/${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}/tags/"
                     def JSON_DATA = sh(script: "curl -s ${API_URL}", returnStdout: true).trim()
-                    def SLURPER = new JsonSlurper()
-                    def LATEST_TAG = SLURPER.parseText(JSON_DATA).results[0].name
+                    def LATEST_TAG = new JsonSlurper().parseText(JSON_DATA).results[0].name
                     def NEW_LATEST_TAG = (LATEST_TAG as Double) + 0.1
-                }
 
-                echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
+                    echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
 
-               script {
                     docker.withRegistry('${DOCKER_HUB_REGISTRY}', '${DOCKER_HUB_CREDENTIALS_ID}') {
                         image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
                         image.push("${NEW_LATEST_TAG.toString()}")
