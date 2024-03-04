@@ -5,7 +5,7 @@ pipeline {
     agent any
 
     environment {
-        GIT_CHECK_URL = 'https://github.com/jonghechoi/member-maganement.git'
+        GIT_CHECKOUT_URL = 'https://github.com/jonghechoi/member-maganement.git'
         GIT_CHECKOUT_BRANCH = 'master'
         GIT_CREDENTIALS_ID = 'ListCheckr-Member-App-AccessToken'
     }
@@ -45,7 +45,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Jenkins Test13'
+                echo 'Jenkins Test14'
                 echo '$(APP_NAME)'
                 echo '$(JAR_PATH)'
             }
