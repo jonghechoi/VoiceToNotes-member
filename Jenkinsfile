@@ -13,7 +13,9 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                SCM_VARS = git branch: "${GIT_CHECKOUT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_CHECKOUT_URL}"
+                step {
+                    SCM_VARS = git branch: "${GIT_CHECKOUT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_CHECKOUT_URL}"
+                }
             }
 
 //             post {
@@ -43,7 +45,7 @@ pipeline {
 //             }
         }
 
-        stage('Test') [
+        stage('Test') {
             steps {
                 sh '''
                 ./gradlew test
@@ -58,11 +60,11 @@ pipeline {
 //                     error '\n\n\n Test Failed. \n\n\n'
 //                 }
 //             }
-        ]
+        }
 
         stage('Deployment') {
             steps {
-                echo 'Jenkins Test5'
+                echo 'Jenkins Test6'
                 echo '$(APP_NAME)'
                 echo '$(JAR_PATH)'
             }
