@@ -54,9 +54,10 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:3.2.0'
 
     /* Netflix Eureka */
-    if (gradle.startParameter.taskNames.any { it.contains('bootRun') } && gradle.startParameter.activeProfiles.contains('dev')) {
+    if (gradle.startParameter.taskNames.any { it.contains('bootRun') } && profile.contains('dev')) {
         implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.3'
     }
+
 }
 
 dependencyManagement {
