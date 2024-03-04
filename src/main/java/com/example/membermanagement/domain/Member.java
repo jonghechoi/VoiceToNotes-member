@@ -14,7 +14,6 @@ public class Member {
     @SequenceGenerator(name = "member_seq", sequenceName = "member_seq", allocationSize = 1)
     private Long id;
 
-
     private String uid;
 
     private String password;
