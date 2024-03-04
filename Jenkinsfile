@@ -56,12 +56,10 @@ pipeline {
 
                     echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
 
-//                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-id') {
-//                         docker.image("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}:${DOCKER_IMAGE_TAG}").pull()
-//
-//                         image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
-//                         image.push("${RELEASE_NOTES}")
-//                     }
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-id') {
+                        image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
+                        image.push("${RELEASE_NOTES}")
+                    }
                 }
             }
         }
