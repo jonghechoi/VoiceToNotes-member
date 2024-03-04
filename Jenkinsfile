@@ -60,7 +60,7 @@ pipeline {
                     echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
 
                     docker.withRegistry('${DOCKER_HUB_REGISTRY}', '${DOCKER_HUB_CREDENTIALS_ID}') {
-                        image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
+                        def image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
                         image.push("${NEW_LATEST_TAG.toString()}")
                     }
                 }
