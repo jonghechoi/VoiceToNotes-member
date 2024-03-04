@@ -2,6 +2,7 @@ import groovy.json.JsonSlurper
 
 def APP_NAME = 'member-management-0.0.1-SNAPSHOT'
 def JAR_PATH = 'build/libs/${APP_NAME}.jar'
+def DOCKER_HUB_REGISTRY = 'https://registry.hub.docker.com'
 def DOCKER_HUB_USERNAME = 'sosinnmi2'
 def DOCKER_HUB_REPOSITORY = 'member'
 def DOCKER_IMAGE_TAG = 'latest'
@@ -58,7 +59,7 @@ pipeline {
 
                     echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
 
-                    docker.withRegistry("https://registry.hub.docker.com", "${DOCKER_HUB_CREDENTIALS_ID}") {
+                    docker.withRegistry('${DOCKER_HUB_REGISTRY}', '${DOCKER_HUB_CREDENTIALS_ID}') {
                         image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
                         image.push("${NEW_LATEST_TAG.toString()}")
                     }
