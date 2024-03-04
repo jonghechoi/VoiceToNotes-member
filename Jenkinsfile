@@ -1,6 +1,5 @@
 import groovy.json.JsonSlurper
 
-
 def APP_NAME = 'member-management-0.0.1-SNAPSHOT'
 def JAR_PATH = 'build/libs/${APP_NAME}.jar'
 def DOCKER_HUB_USERNAME = 'sosinnmi2'
@@ -49,10 +48,9 @@ pipeline {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    def SLURPER = new JsonSlurper()
-
                     def API_URL = "https://hub.docker.com/v2/repositories/${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}/tags/"
                     def JSON_DATA = sh(script: "curl -s ${API_URL}", returnStdout: true).trim()
+                    def SLURPER = new JsonSlurper()
                     def LATEST_TAG = SLURPER.parseText(JSON_DATA).results[0].name
                     def NEW_LATEST_TAG = (LATEST_TAG as Double) + 0.1
 
