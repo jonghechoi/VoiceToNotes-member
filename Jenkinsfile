@@ -30,6 +30,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
+                chmod 777 ./gradlew
                 ./gradlew clean bootJar -Pprofile=dev
                 '''
             }
@@ -45,7 +46,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Jenkins Test14'
+                echo 'Jenkins Test15'
                 echo '$(APP_NAME)'
                 echo '$(JAR_PATH)'
             }
