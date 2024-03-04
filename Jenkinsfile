@@ -60,7 +60,7 @@ pipeline {
 
                     docker.withRegistry("https://registry.hub.docker.com", "${DOCKER_HUB_CREDENTIALS_ID}") {
                         image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
-                        image.push("${NEW_LATEST_TAG}")
+                        image.push("${NEW_LATEST_TAG.toString()}")
                     }
                 }
             }
