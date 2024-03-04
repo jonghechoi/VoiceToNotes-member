@@ -52,7 +52,7 @@ pipeline {
             steps {
                 script {
                     def API_URL = "https://hub.docker.com/v2/repositories/${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}/tags/"
-                    def JSON_DATA = sh(script: "curl -s ${API_URL}", returnStdout: true).trim()
+                    def JSON_DATA = sh (script: "curl -s ${API_URL}", returnStdout: true).trim()
                     def LATEST_TAG = new JsonSlurper().parseText(JSON_DATA).results[0].name
                     def NEW_LATEST_TAG = (LATEST_TAG as Double) + 0.1
 
