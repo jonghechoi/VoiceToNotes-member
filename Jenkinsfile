@@ -53,7 +53,7 @@ pipeline {
                     def JSON_DATA = sh(script: "curl -s ${API_URL}", returnStdout: true).trim()
                     def SLURPER = new JsonSlurper()
                     def LATEST_TAG = SLURPER.parseText(JSON_DATA).results[0].name
-                    def NEW_LATEST_TAG = LATEST_TAG + 0.1
+                    def NEW_LATEST_TAG = (LATEST_TAG as Double) + 0.1
 
                     echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
 
