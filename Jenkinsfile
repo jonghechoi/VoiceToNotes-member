@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                step {
+                script {
                     SCM_VARS = git branch: "${GIT_CHECKOUT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_CHECKOUT_URL}"
                 }
             }
@@ -64,7 +64,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Jenkins Test7'
+                echo 'Jenkins Test8'
                 echo '$(APP_NAME)'
                 echo '$(JAR_PATH)'
             }
