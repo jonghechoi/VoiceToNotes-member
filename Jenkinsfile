@@ -16,14 +16,14 @@ pipeline {
                 SCM_VARS = git branch: "${GIT_CHECKOUT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_CHECKOUT_URL}"
             }
 
-            post {
-                success {
-                    echo '\n\n\n Git Repo Checkout Succeed. \n\n\n'
-                }
-                failure {
-                    error '\n\n\n Git Repo Checkout Failed. \n\n\n'
-                }
-            }
+//             post {
+//                 success {
+//                     echo '\n\n\n Git Repo Checkout Succeed. \n\n\n'
+//                 }
+//                 failure {
+//                     error '\n\n\n Git Repo Checkout Failed. \n\n\n'
+//                 }
+//             }
         }
 
         stage('Build') {
@@ -33,14 +33,14 @@ pipeline {
                 '''
             }
 
-            post {
-                success {
-                    echo '\n\n\n Build Succeed. \n\n\n'
-                }
-                failure {
-                    error '\n\n\n Build Failed. \n\n\n'
-                }
-            }
+//             post {
+//                 success {
+//                     echo '\n\n\n Build Succeed. \n\n\n'
+//                 }
+//                 failure {
+//                     error '\n\n\n Build Failed. \n\n\n'
+//                 }
+//             }
         }
 
         stage('Test') [
@@ -50,14 +50,14 @@ pipeline {
                 '''
             }
 
-            post {
-                success {
-                    echo '\n\n\n Test Succeed. \n\n\n'
-                }
-                failure {
-                    error '\n\n\n Test Failed. \n\n\n'
-                }
-            }
+//             post {
+//                 success {
+//                     echo '\n\n\n Test Succeed. \n\n\n'
+//                 }
+//                 failure {
+//                     error '\n\n\n Test Failed. \n\n\n'
+//                 }
+//             }
         ]
 
         stage('Deployment') {
