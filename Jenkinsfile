@@ -1,3 +1,6 @@
+import groovy.json.JsonSlurper
+
+
 def APP_NAME = 'member-management-0.0.1-SNAPSHOT'
 def JAR_PATH = 'build/libs/${APP_NAME}.jar'
 def DOCKER_HUB_USERNAME = 'sosinnmi2'
