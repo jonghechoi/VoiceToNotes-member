@@ -52,8 +52,8 @@ pipeline {
                     def API_URL = "https://hub.docker.com/v2/repositories/${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}/tags/"
                     def JSON_DATA = sh(script: "curl -s ${API_URL}", returnStdout: true).trim()
                     def SLURPER = new JsonSlurper()
-                    int LATEST_TAG = SLURPER.parseText(JSON_DATA).results[0].name.toInteger()
-                    int NEW_LATEST_TAG = LATEST_TAG + 0.1
+                    def LATEST_TAG = SLURPER.parseText(JSON_DATA).results[0].name.toInteger()
+                    def NEW_LATEST_TAG = LATEST_TAG + 0.1
 
                     echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
 
