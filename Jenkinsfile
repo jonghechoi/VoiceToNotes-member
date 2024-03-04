@@ -11,13 +11,19 @@ pipeline {
     }
 
     stages {
-        script {
-            SCM_VARS = git branch: "${GIT_CHECKOUT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_CHECKOUT_URL}"
-        }
-
         stage('Git Checkout') {
             steps {
-
+                script {
+                    SCM_VARS = git branch: "${GIT_CHECKOUT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_CHECKOUT_URL}"
+                }
+            }
+            post {
+                success {
+                    echo '\n\n\n Git Repo Checkout Succeed. \n\n\n'
+                }
+                failure {
+                    error '\n\n\n Git Repo Checkout Failed. \n\n\n'
+                }
             }
         }
 
@@ -39,7 +45,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'Jenkins Test10'
+                echo 'Jenkins Test11'
                 echo '$(APP_NAME)'
                 echo '$(JAR_PATH)'
             }
