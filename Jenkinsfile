@@ -56,7 +56,7 @@ pipeline {
                     def LATEST_TAG = new JsonSlurper().parseText(JSON_DATA).results[0].name
                     def NEW_LATEST_TAG = (LATEST_TAG as Double) + 0.1
 
-                    echo "Latest Docker Image Tag: ${NEW_LATEST_TAG}"
+                    echo "New Docker Image Tag: ${NEW_LATEST_TAG}"
 
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub-id') {
                         image = docker.build("${DOCKER_HUB_USERNAME}/${DOCKER_HUB_REPOSITORY}")
