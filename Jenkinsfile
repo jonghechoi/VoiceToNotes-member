@@ -1,7 +1,10 @@
 import groovy.json.JsonSlurper
 
 def APP_NAME = 'member-management-0.0.1-SNAPSHOT'
-def JAR_PATH = 'build/libs/${APP_NAME}.jar'
+def JAR_PATH = 'build/libs'
+def JAR_FILE = '${APP_NAME}.jar'
+
+def TARGET_DOCKER_CONTAINER = 'member'
 def DOCKER_HUB_REGISTRY = 'https://registry.hub.docker.com'
 def DOCKER_HUB_USERNAME = 'sosinnmi2'
 def DOCKER_HUB_REPOSITORY = 'member'
@@ -23,14 +26,6 @@ pipeline {
             steps {
                 script {
                     SCM_VARS = git branch: "${GIT_CHECKOUT_BRANCH}", credentialsId: "${GIT_CREDENTIALS_ID}", url: "${GIT_CHECKOUT_URL}"
-                }
-            }
-            post {
-                success {
-                    echo 'Git Repo Checkout Succeed.'
-                }
-                failure {
-                    echo 'Git Repo Checkout Failed.'
                 }
             }
         }
@@ -68,11 +63,10 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                // 컨테이너 접속
-
-                // jar 파일 교체
-                echo "${APP_NAME}"
-                echo "${JAR_PATH}"
+                // 기존 컨테이너 내 jar 파일 교체
+                sh 'docker exec -it ${TARGET_DOCKER_CONTAINER} rm -r /app/app.jar'
+                sh 'docker cp ${JAR_PATH}/${JAR_FILE} ${TARGET_DOCKER_CONTAINER}:/app/app.jar'
+                sh 'docker exec -it ${TARGET_DOCKER_CONTAINER} java -jar /app/${JAR_FILE}'
             }
         }
     }
