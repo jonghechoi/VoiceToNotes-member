@@ -69,6 +69,7 @@ pipeline {
         stage('Deployment') {
             steps {
                 // 컨테이너 접속
+
                 // jar 파일 교체
                 echo "${APP_NAME}"
                 echo "${JAR_PATH}"
