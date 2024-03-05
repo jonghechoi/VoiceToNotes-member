@@ -32,7 +32,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'chmod 777 ./gradlew'
-                sh './gradlew clean bootJar -Pprofile=dev'
+                sh './gradlew clean bootJar -Pprofile=local'
             }
         }
 
