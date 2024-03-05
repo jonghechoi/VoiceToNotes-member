@@ -23,8 +23,9 @@ repositories {
 
 ext {
     set('springCloudVersion', "2023.0.0")
-    profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
 }
+ext.profile = project.hasProperty('profile') ? project.profile : 'local'
+println("현재 profile : " + profile)
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
@@ -54,10 +55,9 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:3.2.0'
 
     /* Netflix Eureka */
-    if (gradle.startParameter.taskNames.any { it.contains('bootRun') } && profile.contains('dev')) {
+    if (gradle.startParameter.taskNames.any { it.contains('bootJar') } && profile.contains('dev')) {
         implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.0.3'
     }
-
 }
 
 dependencyManagement {
