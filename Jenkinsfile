@@ -9,6 +9,8 @@ def DOCKER_HUB_USERNAME = 'sosinnmi2'
 def DOCKER_HUB_REPOSITORY = 'member'
 def DOCKER_IMAGE_TAG = 'latest'
 
+def PROFILE = 'dev'
+
 pipeline {
     agent any
 
@@ -32,7 +34,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'chmod 777 ./gradlew'
-                sh './gradlew clean bootJar -Pprofile=local'
+                sh "./gradlew clean bootJar -Pprofile=${PROFILE}"
             }
         }
 
@@ -62,7 +64,6 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'test3'
                 // 기존 컨테이너 내 jar 파일 교체
                 sh "docker exec -i ${TARGET_DOCKER_CONTAINER} rm -r /app/app.jar"
                 sh "docker cp ${JAR_PATH}/${JAR_FILE} ${TARGET_DOCKER_CONTAINER}:/app/app.jar"
