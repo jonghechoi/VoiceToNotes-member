@@ -65,9 +65,9 @@ pipeline {
             steps {
                 echo 'test1'
                 // 기존 컨테이너 내 jar 파일 교체
-                sh "docker exec -it ${TARGET_DOCKER_CONTAINER} rm -r /app/app.jar"
+                sh "docker exec -i ${TARGET_DOCKER_CONTAINER} rm -r /app/app.jar"
                 sh "docker cp ${JAR_PATH}/${JAR_FILE} ${TARGET_DOCKER_CONTAINER}:/app/app.jar"
-                sh "docker exec -it ${TARGET_DOCKER_CONTAINER} java -jar /app/${JAR_FILE}"
+                sh "docker exec -i ${TARGET_DOCKER_CONTAINER} java -jar /app/${JAR_FILE}"
             }
         }
     }
