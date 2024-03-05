@@ -62,7 +62,7 @@ pipeline {
 
         stage('Deployment') {
             steps {
-                echo 'test1'
+                echo 'test2'
                 // 기존 컨테이너 내 jar 파일 교체
                 sh "docker exec -i ${TARGET_DOCKER_CONTAINER} rm -r /app/app.jar"
                 sh "docker cp ${JAR_PATH}/${JAR_FILE} ${TARGET_DOCKER_CONTAINER}:/app/app.jar"
