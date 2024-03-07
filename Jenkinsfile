@@ -7,7 +7,6 @@ def TARGET_DOCKER_CONTAINER = 'member-management'
 def DOCKER_HUB_REGISTRY = 'https://registry.hub.docker.com'
 def DOCKER_HUB_USERNAME = 'sosinnmi2'
 def DOCKER_HUB_REPOSITORY = 'member'
-def DOCKER_IMAGE_TAG = 'latest'
 
 def PROFILE = 'dev'
 
