@@ -66,7 +66,10 @@ pipeline {
                 // 기존 컨테이너 내 jar 파일 교체
                 sh "docker exec -i ${TARGET_DOCKER_CONTAINER} rm -r /app/app.jar"
                 sh "docker cp ${JAR_PATH}/${JAR_FILE} ${TARGET_DOCKER_CONTAINER}:/app/app.jar"
-                sh "docker exec -i ${TARGET_DOCKER_CONTAINER} java -jar -Dspring.profiles.active=dev /app/app.jar"
+
+                timeout(time: 5, unit: 'SECONDS') {
+                    sh "docker exec -i ${TARGET_DOCKER_CONTAINER} java -jar -Dspring.profiles.active=dev /app/app.jar"
+                }
             }
         }
     }
