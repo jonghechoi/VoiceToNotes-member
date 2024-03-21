@@ -22,8 +22,12 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String uid = checkAccessTokenAuthorization(request, response, filterChain);
+        if(String.valueOf(request.getRequestURI()).equals("/api/user/join")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
+        String uid = checkAccessTokenAuthorization(request, response, filterChain);
         log.info("토큰에 담긴 uid : {}", uid);
         request.setAttribute("uid", uid);
 
