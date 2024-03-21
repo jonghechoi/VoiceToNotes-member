@@ -31,15 +31,15 @@ public class MemberRestController {
         }
     }
 
-    @PostMapping("/{master_uid}/group")
-    public ResponseEntity<String> memberAdd(@PathVariable String master_uid,
+    @PostMapping("/{masterUid}/group")
+    public ResponseEntity<String> memberAdd(@PathVariable String masterUid,
                                             @RequestBody MemberGroup memberGroup,
                                             HttpServletRequest request) {
-        if (!request.getAttribute("uid").equals(master_uid)) {
+        if (!request.getAttribute("uid").equals(masterUid)) {
             return new ResponseEntity<>("요청한 유저와 토큰에 담긴 유저가 다릅니다.", HttpStatus.FORBIDDEN);
         }
 
-        memberGroup.setMasterUid(master_uid);
+        memberGroup.setMasterUid(masterUid);
         if(groupService.addMemberToGroup(memberGroup)) {
             return new ResponseEntity<>("멤버 추가 성공", HttpStatus.OK);
         }
