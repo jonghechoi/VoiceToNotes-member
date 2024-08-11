@@ -27,9 +27,9 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
             return;
         }
 
-        String uid = checkAccessTokenAuthorization(request, response, filterChain);
-        log.info("토큰에 담긴 uid : {}", uid);
-        request.setAttribute("uid", uid);
+        String email = checkAccessTokenAuthorization(request, response, filterChain);
+        log.info("토큰에 담긴 email : {}", email);
+        request.setAttribute("email", email);
 
         filterChain.doFilter(request, response);
     }

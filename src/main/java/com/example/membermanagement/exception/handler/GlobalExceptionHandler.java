@@ -7,6 +7,7 @@ import com.example.membermanagement.exception.error.MethodArgumentNotValidRespon
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,7 +24,7 @@ public class GlobalExceptionHandler {
     protected ResponseEntity<?> handleJoinException(JoinException e) {
         ErrorCode errorCode = e.getErrorCode();
         ErrorResponseDto responseDto = new ErrorResponseDto(errorCode.getStatus(), errorCode.getCode(), errorCode.getMessage());
-        return new ResponseEntity<>(responseDto, HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(responseDto, HttpStatusCode.valueOf(responseDto.getStatus()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

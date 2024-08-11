@@ -8,16 +8,12 @@ import lombok.Setter;
 @Setter
 public class MemberChanged {
     private Long id;
-    private String uid;
+    private String email;
     private String password;
-    private String name;
-    private String role;
 
     public MemberChanged(Member member) {
         this.id = member.getId();
-        this.uid = member.getUid();
+        this.email = member.getEmail();
         this.password = member.getPassword();
-        this.name = member.getName();
-        this.role = member.getRole();
     }
 }

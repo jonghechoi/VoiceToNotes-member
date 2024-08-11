@@ -23,7 +23,7 @@ public class JoinServiceImpl implements JoinService {
 
     @Override
     public boolean joinMember(MemberRequestDto memberRequestDto) throws JsonProcessingException {
-        memberRepository.findMemberByUid(memberRequestDto.getUid())
+        memberRepository.findMemberByEmail(memberRequestDto.getEmail())
                 .ifPresent(
                         user -> {
                             throw new JoinException(ErrorCode.DUPLICATED_USER_NAME);
