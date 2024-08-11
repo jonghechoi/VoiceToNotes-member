@@ -31,6 +31,12 @@ public class MemberRestController {
         }
     }
 
+    @GetMapping("/join/emailCertification")
+    public ResponseEntity<String> emailCertify(@RequestParam String certification) {
+        // email 발송
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @PostMapping("/{masterUid}/group")
     public ResponseEntity<String> memberAdd(@PathVariable String masterUid,
                                             @RequestBody MemberGroup memberGroup,

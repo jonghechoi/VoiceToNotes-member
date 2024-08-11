@@ -1,6 +1,6 @@
 package com.example.membermanagement.service.impl;
 
-import com.example.membermanagement.adaptor.MemberManagementProducer;
+import com.example.membermanagement.adaptor.MemberKafkaProducer;
 import com.example.membermanagement.domain.Member;
 import com.example.membermanagement.domain.dto.MemberRequestDto;
 import com.example.membermanagement.exception.JoinException;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class JoinServiceImpl implements JoinService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final MemberManagementProducer memberManagementProducer;
+    private final MemberKafkaProducer memberManagementProducer;
 
     @Override
     public boolean joinMember(MemberRequestDto memberRequestDto) throws JsonProcessingException {

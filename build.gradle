@@ -48,6 +48,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
     testImplementation 'org.springframework.security:spring-security-test'
 
+    /* Spring Email */
+    implementation 'org.springframework.boot:spring-boot-starter-mail:3.2.1'
+    implementation 'com.sun.mail:jakarta.mail:2.0.1'
+
     /* JWT */
     implementation 'com.auth0:java-jwt:4.4.0'
 

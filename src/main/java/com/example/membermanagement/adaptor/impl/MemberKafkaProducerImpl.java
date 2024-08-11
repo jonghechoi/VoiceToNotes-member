@@ -1,6 +1,6 @@
 package com.example.membermanagement.adaptor.impl;
 
-import com.example.membermanagement.adaptor.MemberManagementProducer;
+import com.example.membermanagement.adaptor.MemberKafkaProducer;
 import com.example.membermanagement.config.KafkaProperties;
 import com.example.membermanagement.domain.Member;
 import com.example.membermanagement.domain.dto.MemberChanged;
@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class MemberManagementProducerImpl implements MemberManagementProducer {
+public class MemberKafkaProducerImpl implements MemberKafkaProducer {
     private final String TOPIC_MEMBER = "topic_member";
 
     private final KafkaProperties kafkaProperties;
     private KafkaProducer<String, String> producer;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public MemberManagementProducerImpl(KafkaProperties kafkaProperties) {
+    public MemberKafkaProducerImpl(KafkaProperties kafkaProperties) {
         this.kafkaProperties = kafkaProperties;
     }
 
